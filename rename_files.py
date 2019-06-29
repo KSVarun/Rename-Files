@@ -25,9 +25,14 @@ for file in path:
     inside_dir_path = dir_path+file+"/"
     # print(file)
     path2 = sorted_alphanumeric(os.listdir(inside_dir_path))
-    mpfiles = '\d+\.(\w*\s)*\w*.mp4$'
+    mpfiles = '.*\.mp4'
     # print(path2)
     for file_inside in path2:
+        """src=inside_dir_path+file_inside
+        str_i = str(i)
+        dest=inside_dir_path+str_i+file_inside
+        os.rename(src,dest)
+        i=i+1"""
         pattern = re.compile(mpfiles)
         matches = pattern.finditer(file_inside)
         for match in matches:
