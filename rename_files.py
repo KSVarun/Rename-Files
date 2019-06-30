@@ -23,9 +23,11 @@ for file in path:
     # if(file != '.DS_STORE'):
 
     inside_dir_path = dir_path+file+"/"
+    # print(inside_dir_path)
     # print(file)
     path2 = sorted_alphanumeric(os.listdir(inside_dir_path))
     mpfiles = '.*\.mp4'
+    digits = '\d+\.'
     # print(path2)
     for file_inside in path2:
         """src=inside_dir_path+file_inside
@@ -35,5 +37,20 @@ for file in path:
         i=i+1"""
         pattern = re.compile(mpfiles)
         matches = pattern.finditer(file_inside)
+        # print(file_inside)
         for match in matches:
-            print(match)
+            str_match = str(match.group(0))
+            # print(str_match)
+            pattern_digit = re.search(digits, str_match)
+            str_digit = str(pattern_digit.group(0))
+            # print(type(str_match))
+            # print(str_digit + ":" + str_match)
+            str_match_updated = str_match.replace(str_digit, str(i))
+            i += 1
+            # print(inside_dir_path+str_match)
+            os.rename(inside_dir_path+str_match,
+                      inside_dir_path+str_match_updated)
+
+            # print(i)
+            # print(str_match)
+        # print(path)
